@@ -1,5 +1,5 @@
 {
-    import = [
+    imports = [
         "../hardware/homeserver.nix"
         "../common/default.nix"
     ];
