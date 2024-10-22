@@ -6,7 +6,8 @@
 
     # Bootloader.
     boot.loader.grub.enable = true;
-    boot.loader.grub.device = "/dev/sde";
+    boot.loader.grub.device = "nodev";
+    boot.loader.grub.efiSupport = true;
     boot.loader.grub.useOSProber = true;
 
     boot.initrd.luks.devices."luks-539797c1-fc40-4d19-8861-70867a2b2451".device = "/dev/disk/by-uuid/539797c1-fc40-4d19-8861-70867a2b2451";

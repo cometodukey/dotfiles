@@ -23,6 +23,8 @@
         LC_TIME = "en_GB.UTF-8";
     };
 
+    nixpkgs.config.allowUnfree = true;
+
     environment.systemPackages = with pkgs; [
         vim
         wget
