@@ -1,6 +1,6 @@
 {
     imports = [
-        "./services.nix"
+        ./services.nix
     ];
 
     # Set your time zone.
