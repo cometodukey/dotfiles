@@ -39,4 +39,6 @@
         # openssh.authorizedKey.keyFiles = [ ".ssh/" ];
         packages = with pkgs; [];
     };
+
+    system.stateVersion = "24.05";
 }
