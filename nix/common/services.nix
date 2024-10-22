@@ -7,10 +7,10 @@
     # sshd config
     services.openssh = {
         enable = true;
-        settings = [
+        settings = {
             PasswordAuthentication = true;
             PermitRootLogin = "no";
             AllowGroups = [ "dialin" ];
-        ];
+        };
     };
 }
