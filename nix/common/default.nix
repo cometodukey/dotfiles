@@ -42,7 +42,7 @@
         isNormalUser = true;
         description = "duke";
         extraGroups = [ "networkmanager" "wheel" "dialin" ];
-        openssh.authorizedKeys.keyFiles = [ .ssh/authorized_keys ];
+        openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDXDY3uPlcjbux8rHd5Y8SuvTPV+a4mKrPzQtFPoFlxp Home Network" ];
         packages = with pkgs; [];
     };
 
