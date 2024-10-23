@@ -31,6 +31,8 @@
         git
     ];
 
+    programs.vim.defaultEditor = true;
+
     # Groups
 
     users.groups.dialin = {};
