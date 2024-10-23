@@ -8,7 +8,5 @@
             PermitRootLogin = "no";
             AllowGroups = [ "dialin" ];
         };
-        ports = [ 22 ];
     };
-    # services.firewall.allowedTCPPorts = [ 22 ];
 }
