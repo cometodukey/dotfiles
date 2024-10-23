@@ -6,10 +6,12 @@
         ./power.nix
     ];
 
-    # Set your time zone.
+    # Timezone
+
     time.timeZone = "Europe/London";
 
-    # Select internationalisation properties.
+    # Locale
+
     i18n.defaultLocale = "en_GB.UTF-8";
 
     i18n.extraLocaleSettings = {
@@ -24,11 +26,18 @@
         LC_TIME = "en_GB.UTF-8";
     };
 
+    # System packages
+
+    nixpkgs.config.allowUnfree = true;
+    hardware.enableAllFirmware = true;
+    hardware.enableRedistributableFirmware = true;
+
     environment.systemPackages = with pkgs; [
         vim
         wget
         curl
         git
+        powertop
     ];
 
     programs.vim.defaultEditor = true;
@@ -47,7 +56,7 @@
         packages = with pkgs; [];
     };
 
+    # Nix
 
-    nixpkgs.config.allowUnfree = true;
     nix.settings.trusted-users = [ "root" "@wheel" ];
 }

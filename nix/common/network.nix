@@ -1,8 +1,10 @@
 {
-    # Enable networking
+    # Network config
+
     networking.networkmanager.enable = true;
 
-    # firewall config
+    # Firewall
+
     networking.nftables.enable = true;
     networking.firewall = {
         enable = true;

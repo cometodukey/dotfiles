@@ -5,12 +5,13 @@
         ../common/default.nix
     ];
 
-    # Bootloader config
-    # TODO switch to grub
+    # Bootloader
+
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
-    # Set hostname
+    # Hostname
+
     networking.hostName = "homeserver";
 
     # This value determines the NixOS release from which the default
