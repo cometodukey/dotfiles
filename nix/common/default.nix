@@ -1,9 +1,13 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
     imports = [
         ./services.nix
     ];
+
+    options.custom = {
+        sshd = lib.mkOption { type = lib.types.bool; };
+    };
 
     # Set your time zone.
     time.timeZone = "Europe/London";
