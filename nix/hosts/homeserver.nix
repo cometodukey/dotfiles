@@ -2,6 +2,7 @@
     imports = [
         ../hardware/homeserver.nix
         ../common/default.nix
+        ../common/services/firewall.nix
         ../common/services/sshd.nix
     ];
 
