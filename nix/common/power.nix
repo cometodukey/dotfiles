@@ -1,3 +1,5 @@
+{ config, lib, options, pkgs, ... }:
+
 {
     environment.systemPackages = with pkgs; [
         powertop
