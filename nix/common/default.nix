@@ -46,5 +46,5 @@
 
 
     nixpkgs.config.allowUnfree = true;
-    nix.settings.trustedUsers = [ "root" "@wheel" ];
+    nix.settings.trusted-users = [ "root" "@wheel" ];
 }
