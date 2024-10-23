@@ -23,8 +23,6 @@
         LC_TIME = "en_GB.UTF-8";
     };
 
-    nixpkgs.config.allowUnfree = true;
-
     environment.systemPackages = with pkgs; [
         vim
         wget
@@ -46,5 +44,7 @@
         packages = with pkgs; [];
     };
 
-    system.stateVersion = "24.05";
+
+    nixpkgs.config.allowUnfree = true;
+    nix.settings.trustedUsers = [ "root" "@wheel" ];
 }
