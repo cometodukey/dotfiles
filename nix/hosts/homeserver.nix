@@ -1,6 +1,7 @@
 {
     imports = [
         ../hardware/homeserver.nix
+        ../common/services/logrotate.nix
         ../common/services/sshd.nix
         ../common/default.nix
     ];
