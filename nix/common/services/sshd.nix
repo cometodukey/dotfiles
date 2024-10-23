@@ -1,5 +1,3 @@
-{ config, pkgs, ... }:
-
 {
     # sshd config
     services.openssh = {
