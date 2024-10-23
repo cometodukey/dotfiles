@@ -1,7 +1,10 @@
 {
+    # Enable networking
+    networking.networkmanager.enable = true;
+
     # firewall config
     networking.nftables.enable = true;
-    services.firewall = {
+    networking.firewall = {
         enable = true;
         allowedTCPPorts = [];
         allowedUDPPorts = [];

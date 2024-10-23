@@ -1,8 +1,9 @@
 { config, pkgs, ... }:
 
 {
-    # Enable networking
-    networking.networkmanager.enable = true;
+    imports = [
+        ./network.nix
+    ];
 
     # Set your time zone.
     time.timeZone = "Europe/London";
