@@ -3,6 +3,7 @@
 {
     imports = [
         ./network.nix
+        ./power.nix
     ];
 
     # Set your time zone.

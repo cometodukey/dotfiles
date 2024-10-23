@@ -1,8 +1,8 @@
 {
     imports = [
         ../hardware/homeserver.nix
-        ../common/default.nix
         ../common/services/sshd.nix
+        ../common/default.nix
     ];
 
     # Bootloader config
