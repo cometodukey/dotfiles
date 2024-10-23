@@ -1,0 +1,65 @@
+{
+  "nodes": {
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1729551526,
+        "narHash": "sha256-7LAGY32Xl14OVQp3y6M43/0AtHYYvV6pdyBcp3eoz0s=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "5ec753a1fc4454df9285d8b3ec0809234defb975",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1729679207,
+        "narHash": "sha256-0ytLHskpMVuZrnVZvotl1Z/rF9jWbBI8lIjZHZAxWp0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d084336c705fb55a6c0daa247adb2d99d091810c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-latest": {
+      "locked": {
+        "lastModified": 1729679207,
+        "narHash": "sha256-0ytLHskpMVuZrnVZvotl1Z/rF9jWbBI8lIjZHZAxWp0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d084336c705fb55a6c0daa247adb2d99d091810c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "home-manager": "home-manager",
+        "nixpkgs": "nixpkgs",
+        "nixpkgs-latest": "nixpkgs-latest"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

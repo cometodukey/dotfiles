@@ -7,11 +7,10 @@ let
         # Automatically rebase instead of merging upon `git pull`ing.
         pull.rebase = true;
         user = { };
-    }
+    };
 in
 {
     programs.git =
-        enable = true;
         {
         includes = [
             {
@@ -23,5 +22,6 @@ in
                 };
             }
         ];
+	enable = true;
     };
 }
