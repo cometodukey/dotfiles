@@ -4,11 +4,8 @@ let
     cfg = config.custom;
 in
 {
-    # Enable networking
-    networking.networkmanager.enable = true;
-
-    # sshd config
     config = lib.mkIf cfg.sshd {
+        # sshd config
         services.openssh = {
             enable = true;
             settings = {

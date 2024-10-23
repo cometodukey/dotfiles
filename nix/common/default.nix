@@ -2,11 +2,14 @@
 
 {
     imports = [
-        ./services.nix
+        ./sshd.nix
     ];
 
     options.custom = {
         sshd = lib.mkOption { type = lib.types.bool; };
+
+        # Enable networking
+        networking.networkmanager.enable = true;
 
         # Set your time zone.
         time.timeZone = "Europe/London";
