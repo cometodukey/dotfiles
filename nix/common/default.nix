@@ -32,7 +32,11 @@
         git
     ];
 
+    # Groups
+
     users.groups.dialin = {};
+
+    # Users
 
     users.users.duke = {
         isNormalUser = true;
