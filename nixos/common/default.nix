@@ -52,7 +52,7 @@
             liberation_ttf
             fira-code
             fira-code-symbols
-            terminus-font
+            dina-font
             proggyfonts
         ];
 
