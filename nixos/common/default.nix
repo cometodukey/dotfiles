@@ -58,9 +58,18 @@
 
         fontconfig = {
             defaultFonts = {
-                monospace = [ "terminus-font" ];
+                monospace = [ "dina-font" ];
             };
         };
+    };
+
+    # Console
+
+    console = {
+        earlySetup = true;
+        font = dina-font;
+        packages = with pkgs; [ dina-font ];
+        keyMap = "us";
     };
 
     # Groups
