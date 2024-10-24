@@ -25,6 +25,21 @@
                     ./config/nixpkgs/git.nix
                 ];
             };
+
+            thinkpad = inputs.home-manager.lib.homeManagerConfiguration rec {
+                pkgs = import inputs.nixpkgs { localSystem = "x86_64-linux"; };
+                extraSpecialArgs = { inherit inputs; system = "x86_64-linux"; };
+                modules = [
+                    {
+                        home = {
+                            homeDirectory = "/home/duke";
+                            username = "duke";
+                            stateVersion = "24.05";
+                        };
+                    }
+                    ./config/nixpkgs/git.nix
+                ];
+            };
         };
     };
 }
