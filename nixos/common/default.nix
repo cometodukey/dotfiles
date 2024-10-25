@@ -38,6 +38,7 @@
         curl
         git
         powertop
+        pciutils
     ];
 
     programs.vim.defaultEditor = true;

@@ -4,6 +4,7 @@
     imports = [
         ../hardware/thinkpad.nix
         ../common/services/sshd.nix
+        ../common/audio.nix
         ../common/default.nix
         ../common/display.nix
     ];
