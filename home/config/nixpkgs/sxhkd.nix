@@ -1,3 +1,5 @@
+{ config, inputs, lib, options, system, ... }:
+
 {
     services.sxhkd = {
         enable = true;
