@@ -19,7 +19,6 @@
         windowManager.bspwm.enable = true;
     };
 
-    # TODO fix touchpad lag
     services.libinput = {
         enable = true;
         mouse.accelProfile = "flat";
