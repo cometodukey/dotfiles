@@ -1,10 +1,15 @@
+{ config, lib, options, ... }:
+
 {
     # Display config
 
     # DRI acceleration
 
-    hardware.opengl.enable = true;
-    hardware.opengl.driSupport = true;
+    hardware.opengl = {
+        enable = true;
+        driSupport = true;
+        driSupport32Bit = true;
+    };
 
     # X config
     # Uses default login manager + bspwm
@@ -14,21 +19,9 @@
         windowManager.bspwm.enable = true;
     };
 
-    # services.xserver = {
-    #     enable = true;
-
-    #     libinput = {
-    #         enable = true;
-
-    #         # Disable mouse acceleration
-    #         mouse = {
-    #             accelProfile = "flat";
-    #         };
-
-    #         # Disable touchpad acceleration
-    #         touchpad = {
-    #             accelProfile = "flat";
-    #         };
-    #     };
-    # };
+    services.libinput = {
+        enable = true;
+        mouse.accelProfile = "flat";
+        touchpad.accelProfile = "flat";
+    };
 }

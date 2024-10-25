@@ -1,8 +1,11 @@
+{ config, lib, options, pkgs, ... }:
+
 {
     imports = [
         ../hardware/thinkpad.nix
         ../common/services/sshd.nix
         ../common/default.nix
+        ../common/display.nix
     ];
 
     # Bootloader
@@ -15,6 +18,10 @@
     # Hostname
 
     networking.hostName = "thinkpad";
+
+    # GPU
+
+    hardware.opengl.extraPackages = with pkgs; [ intel-media-sdk ];
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
