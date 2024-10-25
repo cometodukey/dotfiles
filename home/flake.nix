@@ -37,7 +37,11 @@
                             stateVersion = "24.05";
                         };
                     }
+                    ./config/nixpkgs/alacritty.nix
+                    ./config/nixpkgs/firefox.nix
                     ./config/nixpkgs/git.nix
+                    ./config/nixpkgs/sxhkd.nix
+                    ./config/environment.nix
                 ];
             };
         };

@@ -44,33 +44,33 @@
 
     # Fonts
 
-    fonts = {
-        packages = with pkgs; [
-            noto-fonts
-            noto-fonts-cjk
-            noto-fonts-emoji
-            liberation_ttf
-            fira-code
-            fira-code-symbols
-            dina-font
-            proggyfonts
-        ];
+    # fonts = {
+    #     packages = with pkgs; [
+    #         noto-fonts
+    #         noto-fonts-cjk
+    #         noto-fonts-emoji
+    #         liberation_ttf
+    #         fira-code
+    #         fira-code-symbols
+    #         dina-font
+    #         proggyfonts
+    #     ];
 
-        fontconfig = {
-            defaultFonts = {
-                monospace = [ "dina-font" ];
-            };
-        };
-    };
+    #     fontconfig = {
+    #         defaultFonts = {
+    #             monospace = [ "dina-font" ];
+    #         };
+    #     };
+    # };
 
     # Console
 
-    console = {
-        earlySetup = true;
-        font = dina-font;
-        packages = with pkgs; [ dina-font ];
-        keyMap = "us";
-    };
+    # console = {
+    #     earlySetup = true;
+    #     font = "dina-font";
+    #     packages = with pkgs; [ dina-font ];
+    #     keyMap = "us";
+    # };
 
     # Groups
 
