@@ -39,6 +39,7 @@
                     }
                     ./config/nixpkgs/alacritty.nix
                     ./config/nixpkgs/firefox.nix
+                    ./config/nixpkgs/bspwm.nix
                     ./config/nixpkgs/git.nix
                     ./config/nixpkgs/sxhkd.nix
                     ./config/environment.nix
