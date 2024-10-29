@@ -22,7 +22,7 @@
                             stateVersion = "24.05";
                         };
                     }
-                    ./config/nixpkgs/git.nix
+                    ./config/home.nix
                 ];
             };
 
@@ -37,13 +37,8 @@
                             stateVersion = "24.05";
                         };
                     }
-                    ./config/nixpkgs/alacritty.nix
-                    ./config/nixpkgs/firefox.nix
-                    ./config/nixpkgs/bspwm.nix
-                    ./config/nixpkgs/git.nix
-                    ./config/nixpkgs/home-manager.nix
-                    ./config/nixpkgs/sxhkd.nix
-                    ./config/environment.nix
+                    ./config/desktop.nix
+                    ./config/home.nix
                 ];
             };
         };
