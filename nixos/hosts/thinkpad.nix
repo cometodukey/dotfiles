@@ -20,6 +20,10 @@
 
     networking.hostName = "thinkpad";
 
+    # Microcode
+
+    hardware.cpu.intel.updateMicrocode = true;
+
     # GPU
 
     hardware.opengl.extraPackages = with pkgs; [ intel-media-sdk ];
