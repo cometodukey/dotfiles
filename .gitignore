@@ -1,2 +1,4 @@
+*.bak
+
 tmp/
 TODO.md
