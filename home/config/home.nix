@@ -1,4 +1,5 @@
 { config, pkgs, libs, ... }:
+
 {
     imports = [
         ./git.nix
@@ -14,4 +15,18 @@
         BROWSER = "firefox";
         TERM = "alacritty";
     };
+
+    # User packages
+
+    home.packages = with pkgs; [
+        wget
+        bash
+        jq
+        htop
+        file
+        ripgrep
+        fd
+        binwalk
+        # unblob
+    ];
 }
