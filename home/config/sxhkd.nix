@@ -12,6 +12,14 @@
             # "super + r" = program launcher; 
             # "Print" = screenshot program;
 
+            # Audio keys
+            "{XF86AudioRaiseVolume,XF86AudioLowerVolume}" = "pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%";
+            "XF86AudioMute" = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
+            "XF86AudioMicMute" = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+
+            # Brightness
+            "XF86MonBrightness{Up,Down}" = "brightnessctl set 5%{+,-}";
+
             # Reloading
             "super + alt + {q,r}" = "bspc {quit,wm-r}";
             "super + alt + Escape" = "pkill -USR1 -x sxkhd";

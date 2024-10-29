@@ -20,6 +20,7 @@
 
     home.packages = with pkgs; [
         wget
+        curl
         bash
         jq
         htop
@@ -28,5 +29,7 @@
         fd
         binwalk
         # unblob
+        pulseaudio
+        brightnessctl
     ];
 }
