@@ -13,7 +13,7 @@
                     y = 10;
                 };
                 dynamic_padding = false;
-                opacity = 0.5;
+                opacity = 0.9;
             };
             scrolling = {
                 history = 100000;
