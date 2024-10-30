@@ -46,7 +46,7 @@
             "module/xwindow" = {
                 type = "internal/xwindow";
                 label = "%title%";
-                label-maxlen = 120;
+                label-maxlen = 60;
             };
             "module/eth-net" = {
                 type = "internet/network";
