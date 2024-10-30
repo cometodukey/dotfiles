@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ./fonts.nix
         ./git.nix
     ];
 
@@ -12,8 +13,6 @@
 
     home.sessionVariables = {
         EDITOR = "vim";
-        BROWSER = "firefox";
-        TERM = "alacritty";
     };
 
     # User packages

@@ -37,7 +37,7 @@
                             stateVersion = "24.05";
                         };
                     }
-                    ./config/desktop.nix
+                    ./config/display/x11/desktop.nix
                     ./config/home.nix
                 ];
             };

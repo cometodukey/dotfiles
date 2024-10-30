@@ -31,6 +31,9 @@ in
             "super + alt + p" = "systemctl --user restart polybar.service";
             # quit/reload program launcher
 
+            # close/kill
+            "super + {_,shift + }w" = "bspc node -{c,k}";
+
             # focus/swap
 
             # focus or send to the given desktop

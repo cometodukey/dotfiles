@@ -12,14 +12,16 @@
                 padding-right = 0;
                 fixed-center = false;
 
-                font-0 = "Dina:pixelsize=12";
+                font-0 = "Terminus:pixelsize=20";
+                font-1 = "Noto Color Emoji:pixelsize=1";
 
                 module-margin-left = 1;
                 module-margin-right = 1;
                 separator = "|";
 
-                modules-left = "bspwm xwindow";
-                modules-right = "net bat date";
+                modules-left = "bspwm";
+                modules-center = "xwindow";
+                modules-right = "eth-net wlan-net bat audio datetime tray";
 
                 wm-restack = "bspwm";
             };
@@ -39,20 +41,26 @@
                 label-empty-padding = 1;
 
                 enable-scroll = false;
-                enable-click = true;
+                enable-click = false;
             };
             "module/xwindow" = {
                 type = "internal/xwindow";
-
                 label = "%title%";
+                label-maxlen = 120;
             };
-            "module/net" = {
-                type = "internal/network";
-
+            "module/eth-net" = {
+                type = "internet/network";
                 interval = 1;
                 interface-type = "wired";
-                label-connected = "Connected";
-                label-disconnected = "Disconnected";
+                label-connected = "eth connected";
+                label-disconnected = "eth disconnected";
+            };
+            "module/wlan-net" = {
+                type = "internal/network";
+                interval = 1;
+                interface-type = "wireless";
+                label-connected = "wlan connected";
+                label-disconnected = "wlan disconnected";
             };
             "module/bat" = {
                 type = "internal/battery";
@@ -67,13 +75,23 @@
                 label-charging = "⚡%percentage%%";
                 label-discharging = "🔋 %percentage%%";
             };
-            "module/date" = {
+            "module/audio" = {
+                type = "internal/pulseaudio";
+                interval = 5;
+                click-right = "pavucontrol";
+                label-volume = "%percentage%%";
+                label-muted = "Muted";
+            };
+            "module/datetime" = {
                 type = "internal/date";
 
                 interval = 1;
                 date = "%d/%m/%Y";
                 time = "%H:%M";
                 label = "%time% %date%";
+            };
+            "module/tray" = {
+                type = "internal/tray";
             };
         };
     };
