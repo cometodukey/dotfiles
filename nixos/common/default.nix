@@ -72,7 +72,10 @@
         isNormalUser = true;
         description = "duke";
         extraGroups = [ "networkmanager" "wheel" "dialin" ];
-        openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDXDY3uPlcjbux8rHd5Y8SuvTPV+a4mKrPzQtFPoFlxp Home Network" ];
+        openssh.authorizedKeys.keys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDXDY3uPlcjbux8rHd5Y8SuvTPV+a4mKrPzQtFPoFlxp Home Network" 
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHXyVnuPiZ0RT9JZqBnm3zmqErVecDO4dKbQ70KeyfuZ ecbruce@proton.me"
+        ];
         packages = with pkgs; [];
     };
 
