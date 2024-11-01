@@ -31,16 +31,17 @@
     hardware = {
         cpu.intel.updateMicrocode = true;
         opengl = {
-            # enable = true;
-            # driSupport = true;
-            # driSupport32Bit = true;
+            enable = true;
+            driSupport = true;
+            driSupport32Bit = true;
         };
         nvidia = {
-            # modesetting.enable = true;
+            modesetting.enable = true;
             # powerManagement.enable = true;
             # powerManagement.finegrained = false;
-            # open = false;
-            # TODO correct drivers
+            open = false;
+            nvidiaSettings = true;
+            package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
         };
     };
 
@@ -63,7 +64,8 @@
         };
     };
 
-    # Containers
+    # SMB
+    # TODO revise security measures
 
     containers.nas = {
         autoStart = true;
@@ -107,9 +109,46 @@
         };
     };
 
-    # SMB ports
-    networking.firewall.allowedTCPPorts = [ 139 445 ];
+    networking.firewall.allowedTCPPorts = [ 139 445 8096 ];
     networking.firewall.allowedUDPPorts = [ 137 138 ];
+
+    # Jellyfin
+
+    containers.jellyfin = {
+        autoStart = true;
+        restartIfChanged = true;
+        privateNetwork = false;
+
+        bindMounts = {
+            "media" = {
+                hostPath = "/mnt/store/media";
+                mountPoint = "/mnt/media";
+                isReadOnly = true;
+            };
+            "dri" = {
+                hostPath = "/dev/dri";
+                mountPoint = "/dev/dri";
+                isReadOnly = false;
+            };
+        };
+
+        config = { pkgs, ... }: {
+            environment.systemPackages = with pkgs; [
+                jellyfin
+                jellyfin-web
+                jellyfin-ffmpeg
+                pciutils
+            ];
+            services.jellyfin = {
+                enable = true;
+                openFirewall = true;
+            };
+            hardware.opengl = {
+                enable = true;
+            };
+            system.stateVersion = "24.05";
+        };
+    };
 
     #
 
