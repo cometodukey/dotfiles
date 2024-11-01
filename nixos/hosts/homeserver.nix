@@ -16,10 +16,10 @@
     # Display
 
     services.xserver = {
-        enable = true;
-        videoDrivers = [ "nvidia" ];
-        displayManager.lightdm.enable = true;
-        desktopManager.xfce.enable = true;
+        enable = false;
+        # videoDrivers = [ "nvidia" ];
+        # displayManager.lightdm.enable = true;
+        # desktopManager.xfce.enable = true;
     };
 
     # Hostname
@@ -31,15 +31,16 @@
     hardware = {
         cpu.intel.updateMicrocode = true;
         opengl = {
-            enable = true;
-            driSupport = true;
-            driSupport32Bit = true;
+            # enable = true;
+            # driSupport = true;
+            # driSupport32Bit = true;
         };
         nvidia = {
-            modesetting.enable = true;
-            powerManagement.enable = true;
-            powerManagement.finegrained = false;
-            open = false;
+            # modesetting.enable = true;
+            # powerManagement.enable = true;
+            # powerManagement.finegrained = false;
+            # open = false;
+            # TODO correct drivers
         };
     };
 
@@ -50,43 +51,65 @@
 
     # ZFS
 
-    boot.extraModulePackages = with config.boot.kernelPackages; [ zfs ];
-    environment.systemPackages = with pkgs; [ zfs ];
-    #boot.supportedFileSystems = [ "zfs" ];
-    #boot.zfs.forceImportRoot = false;
+    environment.systemPackages = with pkgs; [ cryptsetup ];
+    networking.hostId = "ceb9d53a";
+    boot.initrd.luks = {
+        reusePassphrases = true;
+        devices = {
+            "store0".device = "/dev/disk/by-uuid/d5647ee2-c8af-4346-a59c-ceb102bfcbb8";
+            "store1".device = "/dev/disk/by-uuid/a267022e-791a-4a02-9117-f6bb9fad13b9";
+            "store2".device = "/dev/disk/by-uuid/b1bb6c11-ab0c-452a-9f51-04485ff1564b";
+            "store3".device = "/dev/disk/by-uuid/226a2f4f-a2f4-4158-b71c-f69a5622cf80";
+        };
+    };
 
     # Containers
 
     containers.nas = {
-        # autoStart = true;
+        autoStart = true;
         restartIfChanged = true;
         privateNetwork = false;
 
         bindMounts = {
             "media" = {
-                hostPath = "";
+                hostPath = "/mnt/store/media";
                 mountPoint = "/smb/media";
                 isReadOnly = false;
             };
         };
 
         config = { ... }: {
+            users.users.duke = {
+                isNormalUser = true;
+                description = "duke";
+            };
+
              services.samba = {
-                # enable = true;
+                enable = true;
                 openFirewall = true;
                 shares = {
-                    public = {
+                    "media" = {
                         path = "/smb/media";
                         "read only" = false;
+                        "writable" = "yes";
+                        "write list" = [ "duke" ];
+                        "force user" = "duke";
                         "browseable" = "yes";
-                        "guest ok" = "no";
                         comment = "Multi-media share";
                     };
                 };
             };
+            networking.nftables.enable = true;
+            networking.firewall = {
+                enable = true;
+            };
             system.stateVersion = "24.05";
         };
     };
+
+    # SMB ports
+    networking.firewall.allowedTCPPorts = [ 139 445 ];
+    networking.firewall.allowedUDPPorts = [ 137 138 ];
 
     #
 

@@ -1,14 +1,14 @@
 {
     # Network config
 
-    networking.networkmanager.enable = true;
-
-    # Firewall
-
-    networking.nftables.enable = true;
-    networking.firewall = {
-        enable = true;
-        allowedTCPPorts = [];
-        allowedUDPPorts = [];
+    networking = {
+        networkmanager.enable = true;
+        nftables.enable = true;
+        firewall = {
+            enable = true;
+            allowPing = true;
+            allowedTCPPorts = [];
+            allowedUDPPorts = [];
+        };
     };
 }
