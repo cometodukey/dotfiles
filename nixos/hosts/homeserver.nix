@@ -16,10 +16,10 @@
     # Display
 
     services.xserver = {
-        enable = false;
-        # videoDrivers = [ "nvidia" ];
-        # displayManager.lightdm.enable = true;
-        # desktopManager.xfce.enable = true;
+        enable = true;
+        videoDrivers = [ "nvidia" ];
+        displayManager.lightdm.enable = true;
+        desktopManager.xfce.enable = true;
     };
 
     # Hostname
@@ -28,6 +28,7 @@
 
     # Drivers, etc
 
+    nixpkgs.config.nvidia.acceptLicense = true;
     hardware = {
         cpu.intel.updateMicrocode = true;
         opengl = {
