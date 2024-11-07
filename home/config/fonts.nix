@@ -14,4 +14,3 @@
         noto-fonts-emoji
     ];
 }
-

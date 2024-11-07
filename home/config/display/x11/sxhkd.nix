@@ -11,8 +11,8 @@ in
             # Program bindings
             "super + Return" = "${config.programs.alacritty.package}/bin/alacritty";
             "super + b" = "${config.programs.firefox.package}/bin/firefox";
-            # "super + e" = "$TERM -e $EDITOR";
-            # "super + r" = program launcher; 
+            "super + e" = "$TERM -e $EDITOR";
+            "super + r" = "rofi -show run";
             "Print" = "${spectacle} -fcb"; # Fullscreen screenshot
             "shift + Print" = "${spectacle} -rcb"; # Selected region screenshot
             "shift + alt + Print" = "${spectacle} -acb"; # Selected window screenshot

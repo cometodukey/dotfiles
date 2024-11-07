@@ -17,14 +17,15 @@
                 enable-ipc = true;
                 width = "100%";
                 height = 24;
-                padding-left = 0;
-                padding-right = 0;
+                padding-top = 5;
+                padding-left = 1;
+                padding-right = 1;
                 fixed-center = false;
 
                 background = background;
                 foreground = foreground;
 
-                font-0 = "Terminus:pixelsize=24";
+                font-0 = "PragmataPro Liga:pixelsize=14;2";
                 # font-1 = "Noto Color Emoji:pixelsize=1";
 
                 module-margin-left = 1;
@@ -89,7 +90,7 @@
                 battery = "BAT0";
                 adapter = "AC";
 
-                label-charging = "⚡%percentage%%";
+                label-charging = "⚡ %percentage%%";
                 label-discharging = "🔋 %percentage%%";
             };
             "module/audio" = {
@@ -104,7 +105,7 @@
 
                 interval = 1;
                 date = "%d/%m/%Y";
-                time = "%H:%M";
+                time = "%H:%M:%S";
                 label = "%time% %date%";
             };
             "module/tray" = {

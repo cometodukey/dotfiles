@@ -31,7 +31,6 @@
         binwalk
         # unblob
         pulseaudio
-        brightnessctl
         pciutils
         usbutils
         powertop
