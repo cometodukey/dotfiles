@@ -13,6 +13,7 @@
 
     home.sessionVariables = {
         EDITOR = "vim";
+        PAGER = "bat";
     };
 
     # User packages
@@ -33,5 +34,6 @@
         pciutils
         usbutils
         powertop
+        bat
     ];
 }
