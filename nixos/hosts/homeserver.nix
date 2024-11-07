@@ -16,10 +16,10 @@
     # Display
 
     services.xserver = {
-        enable = true;
+        # enable = true;
         videoDrivers = [ "nvidia" ];
-        displayManager.lightdm.enable = true;
-        desktopManager.xfce.enable = true;
+        # displayManager.lightdm.enable = true;
+        # desktopManager.xfce.enable = true;
     };
 
     # Hostname
@@ -65,6 +65,12 @@
         };
     };
 
+    services.zfs = {
+        autoScrub.enable = true;
+        autoSnapshot.enable = true;
+        trim.enable = true;
+    };
+
     # SMB
     # TODO revise security measures
 
@@ -77,6 +83,11 @@
             "media" = {
                 hostPath = "/mnt/store/media";
                 mountPoint = "/smb/media";
+                isReadOnly = false;
+            };
+            "home" = {
+                hostPath = "/mnt/store/home";
+                mountPoint = "/smb/home";
                 isReadOnly = false;
             };
         };
@@ -99,6 +110,16 @@
                         "force user" = "duke";
                         "browseable" = "yes";
                         comment = "Multi-media share";
+                    };
+                    "home" = {
+                        path = "/smb/home";
+                        "read only" = false;
+                        "writable" = "yes";
+                        "write list" = [ "duke" ];
+                        "force user" = "duke";
+                        "browseable" = "yes";
+                        "guest ok" = "no";
+                        comment = "Home directory";
                     };
                 };
             };
