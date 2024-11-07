@@ -8,4 +8,3 @@
         # inactiveOpacityOverride = false;
     };
 }
-

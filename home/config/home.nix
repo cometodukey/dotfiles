@@ -4,6 +4,7 @@
     imports = [
         ./fonts.nix
         ./git.nix
+        ./theme.nix
     ];
 
     # Let Home Manager install and manage itself.

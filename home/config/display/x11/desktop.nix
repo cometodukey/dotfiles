@@ -7,6 +7,7 @@
         ./firefox.nix
         ./polybar.nix
         ./picom.nix
+        # ./redshift.nix
         ./sxhkd.nix
     ];
 
@@ -25,5 +26,6 @@
         spotify
         libreoffice
         bitwarden
+        vscode
     ];
 }

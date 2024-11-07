@@ -1,5 +1,14 @@
+{ config, ... }:
+
 {
-    config.services.polybar = {
+    config.services.polybar =
+    let
+        empty = config.theme.bg-alt1;
+        urgent = config.theme.red;
+        foreground = config.theme.fg;
+        background = config.theme.bg;
+    in
+    {
        enable = true;
        script = "polybar default &";
 
@@ -12,8 +21,11 @@
                 padding-right = 0;
                 fixed-center = false;
 
-                font-0 = "Terminus:pixelsize=20";
-                font-1 = "Noto Color Emoji:pixelsize=1";
+                background = background;
+                foreground = foreground;
+
+                font-0 = "Terminus:pixelsize=24";
+                # font-1 = "Noto Color Emoji:pixelsize=1";
 
                 module-margin-left = 1;
                 module-margin-right = 1;
@@ -29,15 +41,20 @@
                 type = "internal/bspwm";
 
                 label-focused = "%index%";
+                label-focused-background = foreground;
+                label-focused-foreground = background;
+                label-foucsed-underline = background;
                 label-focused-padding = 1;
 
                 label-occupied = "%index%";
                 label-occupied-padding = 1;
 
                 label-urgent = "%index%";
+                label-urgent-background = urgent;
                 label-urgent-padding = 1;
 
                 label-empty = "%index%";
+                label-empty-foreground = empty;
                 label-empty-padding = 1;
 
                 enable-scroll = false;
