@@ -106,7 +106,7 @@
                 isNormalUser = true;
                 uid = 1000;
                 description = "duke";
-                extraGroups = [ "store_access" ];
+                group = "store_access";
             };
 
              services.samba = {
