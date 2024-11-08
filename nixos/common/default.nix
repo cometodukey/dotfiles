@@ -80,6 +80,27 @@
         uid = 1000;
     };
 
+    # Sudo
+
+    security.sudo = {
+        enable = true;
+        extraRules = [
+            {
+                commands = [
+                    {
+                        command = "${pkgs.systemd}/bin/reboot";
+                        options = [ "NOPASSWD" ];
+                    }
+                    {
+                        command = "${pkgs.systemd}/bin/poweroff";
+                        options = [ "NOPASSWD" ];
+                    }
+                ];
+                groups = [ "wheel" ];
+            }
+        ];
+    };
+
     # Nix
 
     nix.settings = {
