@@ -74,6 +74,11 @@
     # SMB
     # TODO revise security measures
 
+    users.groups.store_access = {
+        gid = 990;
+    };
+    users.users.duke.extraGroups = [ "store_access" ];
+
     containers.nas = {
         autoStart = true;
         restartIfChanged = true;
@@ -93,9 +98,15 @@
         };
 
         config = { ... }: {
+            users.groups.store_access = {
+                gid = 990;
+            };
+
             users.users.duke = {
                 isNormalUser = true;
+                uid = 1000;
                 description = "duke";
+                extraGroups = [ "store_access" ];
             };
 
              services.samba = {

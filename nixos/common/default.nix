@@ -77,6 +77,7 @@
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHXyVnuPiZ0RT9JZqBnm3zmqErVecDO4dKbQ70KeyfuZ ecbruce@proton.me"
         ];
         packages = with pkgs; [];
+        uid = 1000;
     };
 
     # Nix
