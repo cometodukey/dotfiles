@@ -28,7 +28,9 @@
 
                 font-0 = "Space Mono:pixelsize=13";
                 font-1 = "Noto Color Emoji:scale=10:style=Regular";
-                font-2 = "Font Awesome:scale=10:style=Regular";
+                font-2 = "FontAwesome6Free:style=Solid:size=10";
+                font-3 = "FontAwesome6Free:style=Regular:size=10";
+                font-4 = "FontAwesome6Brands:style=Regular:size=10";
 
                 module-margin-left = 1;
                 module-margin-right = 1;
@@ -36,16 +38,17 @@
 
                 modules-left = "menu bspwm";
                 modules-center = "xwindow";
-                modules-right = "audio eth wlan bat datetime tray";
+                modules-right = "mic audio eth wlan bat datetime tray";
 
                 wm-restack = "bspwm";
             };
             "module/menu" = {
                 type = "custom/script";
                 # format = "⏻";
-                # label = "test";
-                # exec = "echo ⏻";
-                click-left = "rofi -show run";
+                # label-open = "⏻";
+                # label-active-font = 2;
+                exec = "echo ⏻";
+                click-left = "/usr/bin/env rofi -show run"; # polybar won't run this
             };
             "module/bspwm" = {
                 type = "internal/bspwm";
@@ -75,31 +78,37 @@
                 label = "%title%";
                 label-maxlen = 60;
             };
+            "module/mic" = {
+                type = "custom/script";
+                # exec = "poll-mic-muted";
+            };
             "module/audio" = {
                 type = "internal/pulseaudio";
                 interval = 5;
                 click-right = "pavucontrol";
                 label-volume = "🔊 %percentage%%";
-                label-muted = "🔇";
+                label-muted = "🔇 %percentage%%";
             };
             "module/eth" = {
                 type = "internet/network";
-                label-active-font = 2;
+                # label-active-font = 2;
                 interval = 1;
                 interface-type = "wired";
-                label-connected = ""; # U+F6FF (Font Awesome)
+                label-connected = ""; # U+F6FF (Font Awesome 6 Free)
                 label-disconnected = "⛔";
             };
             "module/wlan" = {
                 type = "internal/network";
-                label-active-font = 2;
+                # label-active-font = 2;
                 interval = 1;
                 interface-type = "wireless";
-                label-connected = ""; # U+F1EB (Font Awesome)
+                label-connected = ""; # U+F1EB (Font Awesome 6 Free)
                 label-disconnected = "⛔";
             };
             "module/bat" = {
                 type = "internal/battery";
+
+                label-active-font = 1;
 
                 poll-interval = 1;
                 full-at = 99;
@@ -110,6 +119,7 @@
 
                 label-charging = "⚡ %percentage%%";
                 label-discharging = "🔋 %percentage%%";
+                # label-discharging = "%percentage%%";
             };
             "module/datetime" = {
                 type = "internal/date";

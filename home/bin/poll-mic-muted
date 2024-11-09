@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+if pactl get-source-mute @DEFAULT_SOURCE@ |& grep yes; then
+    echo 🚫‍🎤
+else
+    echo 🎤
+fi

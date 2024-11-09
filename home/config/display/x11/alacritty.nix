@@ -48,7 +48,6 @@
             };
             colors = {};
             bell.duration = 0;
-
         };
     };
 }

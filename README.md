@@ -15,13 +15,18 @@ betterlockscreen wallpaper:
 
 ## TODO
 
+- [] Wallpaper set on X login
 - [] betterlockscreen
+- [] Night light
 - [] .xinitrc not running
 - [] polybar
-  - [] Wireless, wired, disconnected glyphs
+  - [x] Wireless, wired, disconnected glyphs
+  - [] Mic mute state
+  - [] Battery state icons not displaying
   - [] Menu
     - [] poweroff, reboot, logout, suspend, lock
     - [] Desktop apps
+- [] Notification manager
 - [] Monospace font
 - [] Manual startx instead of running on boot
 - [] unblob when it's nixpkgs
