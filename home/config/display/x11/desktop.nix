@@ -26,6 +26,7 @@
         pavucontrol
         brightnessctl
         spectacle
+        feh
         discord
         signal-desktop
         steam
@@ -34,4 +35,12 @@
         bitwarden
         vscode
     ];
+
+    # xsession.pointerCursor.defaultCursor = "left_ptr";
+    home.file.".xinitrc" = {
+        executable = true;
+        text =''
+            ${pkgs.feh}/bin/feh --bg-fill "${../../../assets/wallpaper.jpg}" &
+        '';
+    };
 }

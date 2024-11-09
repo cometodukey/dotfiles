@@ -12,5 +12,7 @@
     home.packages = with pkgs; [
         terminus_font
         noto-fonts-emoji
+        # space-mono
+        font-awesome
     ];
 }

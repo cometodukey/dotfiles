@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
     config.services.polybar =
@@ -9,15 +9,16 @@
         background = config.theme.bg;
     in
     {
-       enable = true;
-       script = "polybar default &";
+        package = pkgs.polybar.override { pulseSupport = true; };
+
+        enable = true;
+        script = "polybar default &";
 
         config = {
             "bar/default" = {
                 enable-ipc = true;
                 width = "100%";
                 height = 24;
-                padding-top = 5;
                 padding-left = 1;
                 padding-right = 1;
                 fixed-center = false;
@@ -25,18 +26,26 @@
                 background = background;
                 foreground = foreground;
 
-                font-0 = "PragmataPro Liga:pixelsize=14;2";
-                # font-1 = "Noto Color Emoji:pixelsize=1";
+                font-0 = "Space Mono:pixelsize=13";
+                font-1 = "Noto Color Emoji:scale=10:style=Regular";
+                font-2 = "Font Awesome:scale=10:style=Regular";
 
                 module-margin-left = 1;
                 module-margin-right = 1;
-                separator = "|";
+                separator = "⟩";
 
-                modules-left = "bspwm";
+                modules-left = "menu bspwm";
                 modules-center = "xwindow";
-                modules-right = "eth-net wlan-net bat audio datetime tray";
+                modules-right = "audio eth wlan bat datetime tray";
 
                 wm-restack = "bspwm";
+            };
+            "module/menu" = {
+                type = "custom/script";
+                # format = "⏻";
+                # label = "test";
+                # exec = "echo ⏻";
+                click-left = "rofi -show run";
             };
             "module/bspwm" = {
                 type = "internal/bspwm";
@@ -66,19 +75,28 @@
                 label = "%title%";
                 label-maxlen = 60;
             };
-            "module/eth-net" = {
+            "module/audio" = {
+                type = "internal/pulseaudio";
+                interval = 5;
+                click-right = "pavucontrol";
+                label-volume = "🔊 %percentage%%";
+                label-muted = "🔇";
+            };
+            "module/eth" = {
                 type = "internet/network";
+                label-active-font = 2;
                 interval = 1;
                 interface-type = "wired";
-                label-connected = "eth connected";
-                label-disconnected = "eth disconnected";
+                label-connected = ""; # U+F6FF (Font Awesome)
+                label-disconnected = "⛔";
             };
-            "module/wlan-net" = {
+            "module/wlan" = {
                 type = "internal/network";
+                label-active-font = 2;
                 interval = 1;
                 interface-type = "wireless";
-                label-connected = "wlan connected";
-                label-disconnected = "wlan disconnected";
+                label-connected = ""; # U+F1EB (Font Awesome)
+                label-disconnected = "⛔";
             };
             "module/bat" = {
                 type = "internal/battery";
@@ -92,13 +110,6 @@
 
                 label-charging = "⚡ %percentage%%";
                 label-discharging = "🔋 %percentage%%";
-            };
-            "module/audio" = {
-                type = "internal/pulseaudio";
-                interval = 5;
-                click-right = "pavucontrol";
-                label-volume = "%percentage%%";
-                label-muted = "Muted";
             };
             "module/datetime" = {
                 type = "internal/date";
