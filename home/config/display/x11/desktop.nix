@@ -37,6 +37,7 @@
         vscode
     ];
 
+    services.dunst.enable = true;
     services.mpris-proxy.enable = true;
 
     # xsession.pointerCursor.defaultCursor = "left_ptr";

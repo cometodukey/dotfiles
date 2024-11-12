@@ -15,22 +15,23 @@ betterlockscreen wallpaper:
 
 ## TODO
 
-- [] Bluetooth
+- [x] Bluetooth
   - [x] Drivers
   - [x] Userspace manager
-  - [] Polybar module
-- [] Wallpaper set on X login
+- [] MIME type handlers
 - [] betterlockscreen
 - [] Night light
 - [] .xinitrc not running
 - [] polybar
   - [x] Wireless, wired, disconnected glyphs
   - [] Mic mute state
-  - [] Battery state icons not displaying
+  - [x] Battery state icons not displaying
+  - [] Bluetooth
   - [] Menu
     - [] poweroff, reboot, logout, suspend, lock
     - [] Desktop apps
-- [] Notification manager
+- [x] Notification manager
+- [] dunst config
 - [] Monospace font
 - [] Manual startx instead of running on boot
 - [] unblob when it's in nixpkgs
