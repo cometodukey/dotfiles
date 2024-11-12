@@ -14,7 +14,6 @@
 
     home.sessionVariables = {
         EDITOR = "vim";
-        PAGER = "bat";
     };
 
     # User packages
@@ -36,4 +35,9 @@
         powertop
         bat
     ];
+
+    # home.file.".local/bin/poll-mic-muted" = {
+    #     executable = true;
+    #     source = "bin/poll-mic-muted";
+    # };
 }

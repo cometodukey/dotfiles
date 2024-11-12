@@ -39,6 +39,8 @@
     # xsession.pointerCursor.defaultCursor = "left_ptr";
     home.file.".xinitrc" = {
         executable = true;
+        # xset -dmps
+        # xset s off
         text =''
             ${pkgs.feh}/bin/feh --bg-fill "${../../../assets/wallpaper.jpg}" &
         '';

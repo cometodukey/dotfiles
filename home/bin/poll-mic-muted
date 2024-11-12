@@ -1,7 +1,12 @@
-#!/usr/bin/env sh
+# nix-shell -p pactl grep
 
-if pactl get-source-mute @DEFAULT_SOURCE@ |& grep yes; then
-    echo 🚫‍🎤
+# echo test > $HOME/log.txt
+# ls -la /usr/bin/ >> $HOME/log.txt
+
+# #!/usr/bin/env sh
+
+if pactl get-source-mute @DEFAULT_SOURCE@ |& grep yes > /dev/null; then
+    echo 🚫‍🎤 # ZWJ
 else
     echo 🎤
 fi

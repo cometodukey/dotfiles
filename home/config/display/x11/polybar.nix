@@ -48,7 +48,7 @@
                 # label-open = "⏻";
                 # label-active-font = 2;
                 exec = "echo ⏻";
-                click-left = "/usr/bin/env rofi -show run"; # polybar won't run this
+                click-left = "rofi -show run"; # polybar won't run this
             };
             "module/bspwm" = {
                 type = "internal/bspwm";
@@ -80,7 +80,9 @@
             };
             "module/mic" = {
                 type = "custom/script";
-                # exec = "poll-mic-muted";
+                interval = 1;
+                exec = "$HOME/dotfiles/home/bin/poll-mic-muted";
+                # exec = "echo test";
             };
             "module/audio" = {
                 type = "internal/pulseaudio";
