@@ -27,6 +27,7 @@
         brightnessctl
         spectacle
         feh
+        blueman
         discord
         signal-desktop
         steam
@@ -35,6 +36,8 @@
         bitwarden
         vscode
     ];
+
+    services.mpris-proxy.enable = true;
 
     # xsession.pointerCursor.defaultCursor = "left_ptr";
     home.file.".xinitrc" = {

@@ -15,6 +15,10 @@ betterlockscreen wallpaper:
 
 ## TODO
 
+- [] Bluetooth
+  - [x] Drivers
+  - [x] Userspace manager
+  - [] Polybar module
 - [] Wallpaper set on X login
 - [] betterlockscreen
 - [] Night light
@@ -29,7 +33,7 @@ betterlockscreen wallpaper:
 - [] Notification manager
 - [] Monospace font
 - [] Manual startx instead of running on boot
-- [] unblob when it's nixpkgs
+- [] unblob when it's in nixpkgs
 - [] ZFS snapshots
 - [] Move container filesystems to store/services
 - [] Rewrite jellyfin container for docker with nvidia-container-toolkit

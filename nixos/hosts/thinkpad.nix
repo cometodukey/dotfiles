@@ -16,17 +16,16 @@
 
     boot.initrd.luks.devices."luks-6f47f36f-cb26-4bf1-9b5b-0edb405e5c70".device = "/dev/disk/by-uuid/6f47f36f-cb26-4bf1-9b5b-0edb405e5c70";
 
-    # Hostname
-
     networking.hostName = "thinkpad";
 
-    # Microcode
-
-    hardware.cpu.intel.updateMicrocode = true;
-
-    # GPU
-
-    hardware.opengl.extraPackages = with pkgs; [ intel-media-sdk ];
+    hardware = {
+        cpu.intel.updateMicrocode = true;
+        opengl.extraPackages = with pkgs; [ intel-media-sdk ];
+        bluetooth = {
+            enable = true;
+            powerOnBoot = true;
+        };
+    };
 
     services.xserver.windowManager.bspwm.enable = true;
 
