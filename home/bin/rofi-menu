@@ -1,0 +1,41 @@
+#!/usr/bin/env sh
+
+desktop_apps_menu() {
+    action=$(echo -e "Firefox\nVSCode\nSpotify\nDiscord\nSignal\nBitwarden\nSteam\nLibreOffice" | rofi -dmenu)
+    if [[ $action = "Firefox" ]]; then
+        firefox
+    elif [[ $action = "VSCode" ]]; then
+        code
+    elif [[ $action = "Spotify" ]]; then
+        spotify
+    elif [[ $action = "Discord" ]]; then
+        discord
+    elif [[ $action = "Signal" ]]; then
+        signal-desktop
+    elif [[ $action = "Bitwarden" ]]; then
+        bitwarden
+    elif [[ $action = "Steam" ]]; then
+        steam
+    elif [[ $action = "LibreOffice" ]]; then
+        libreoffice
+    fi
+}
+
+menu() {
+    action=$(echo -e "Shutdown\nReboot\nLock\nLogout\nDesktop Apps\nLauncher" | rofi -dmenu)
+    if [[ $action = "Shutdown" ]]; then
+        systemctl poweroff
+    elif [[ $action = "Reboot" ]]; then
+        systemctl reboot
+    elif [[ $action = "Lock" ]]; then
+        betterlockscreen --lock
+    elif [[ $action = "Logout" ]]; then
+        bspc quit
+    elif [[ $action = "Desktop Apps" ]]; then
+        desktop_apps_menu
+    elif [[ $action = "Launcher" ]]; then
+        rofi -show run
+    fi
+}
+
+menu

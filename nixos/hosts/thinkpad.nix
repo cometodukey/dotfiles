@@ -23,9 +23,11 @@
         opengl.extraPackages = with pkgs; [ intel-media-sdk ];
         bluetooth = {
             enable = true;
-            powerOnBoot = true;
+            powerOnBoot = false;
         };
     };
+
+    services.blueman.enable = true;
 
     services.xserver.windowManager.bspwm.enable = true;
 

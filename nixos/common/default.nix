@@ -41,27 +41,6 @@
 
     programs.vim.defaultEditor = true;
 
-    # Fonts
-
-    # fonts = {
-    #     packages = with pkgs; [
-    #         noto-fonts
-    #         noto-fonts-cjk
-    #         noto-fonts-emoji
-    #         liberation_ttf
-    #         fira-code
-    #         fira-code-symbols
-    #         dina-font
-    #         proggyfonts
-    #     ];
-
-    #     fontconfig = {
-    #         defaultFonts = {
-    #             monospace = [ "dina-font" ];
-    #         };
-    #     };
-    # };
-
     # Groups
 
     users.groups.dialin = {};
@@ -103,8 +82,15 @@
 
     # Nix
 
-    nix.settings = {
-        trusted-users = [ "root" "@wheel" ];
-        experimental-features = [ "nix-command" "flakes"  ];
+    nix = {
+        gc = {
+            automatic = true;
+            dates = "weekly";
+            options = "--delete-older-than 30d";
+        };
+        settings = {
+            trusted-users = [ "root" "@wheel" ];
+            experimental-features = [ "nix-command" "flakes"  ];
+        };
     };
 }

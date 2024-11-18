@@ -12,7 +12,6 @@
     };
 
     # X config
-    # Uses default login manager + bspwm
 
     services.xserver = {
         enable = true;

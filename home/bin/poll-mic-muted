@@ -1,9 +1,4 @@
-# nix-shell -p pactl grep
-
-# echo test > $HOME/log.txt
-# ls -la /usr/bin/ >> $HOME/log.txt
-
-# #!/usr/bin/env sh
+#!/usr/bin/env sh
 
 if pactl get-source-mute @DEFAULT_SOURCE@ |& grep yes > /dev/null; then
     echo 🚫‍🎤 # ZWJ

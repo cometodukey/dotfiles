@@ -27,7 +27,6 @@
         brightnessctl
         spectacle
         feh
-        blueman
         discord
         signal-desktop
         steam
@@ -35,18 +34,39 @@
         libreoffice
         bitwarden
         vscode
+        mpc_cli
     ];
 
-    services.dunst.enable = true;
-    services.mpris-proxy.enable = true;
+    services.dunst.enable = true; # Notification manager
+    services.blueman-applet.enable = true;
+    services.mpris-proxy.enable = true; # Bluetooth device media control
+    xdg.userDirs.enable = true;
+    services.mpd = {
+        enable = true;
+        network.startWhenNeeded = true;
+    };
+
+    # pkgs.writeShellScriptBin = {
+    #     name = "rofi-menu";
+    #     source = "../../../bin/rofi-menu";
+    # };
+
+    home.file.".profile" = {
+        executable = true;
+        text = "";
+    };
 
     # xsession.pointerCursor.defaultCursor = "left_ptr";
     home.file.".xinitrc" = {
         executable = true;
-        # xset -dmps
+        # xset -dpms
         # xset s off
+        # cursor
+        # sxhkd
+        # bspwm
+        # polybar default &
         text =''
-            ${pkgs.feh}/bin/feh --bg-fill "${../../../assets/wallpaper.jpg}" &
+            ${pkgs.feh}/bin/feh --bg-fill "${../../../assets/wallpaper.jpg}"
         '';
     };
 }

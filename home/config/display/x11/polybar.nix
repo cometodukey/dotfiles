@@ -9,7 +9,10 @@
         background = config.theme.bg;
     in
     {
-        package = pkgs.polybar.override { pulseSupport = true; };
+        package = pkgs.polybar.override {
+            mpdSupport = true;
+            pulseSupport = true;
+        };
 
         enable = true;
         script = "polybar default &";
@@ -37,7 +40,7 @@
                 separator = "⟩";
 
                 modules-left = "menu bspwm";
-                modules-center = "xwindow";
+                modules-center = "xwindow music";
                 modules-right = "mic audio eth wlan bat datetime tray";
 
                 wm-restack = "bspwm";
@@ -48,7 +51,7 @@
                 # label-open = "⏻";
                 # label-active-font = 2;
                 exec = "echo ⏻";
-                click-left = "rofi -show run"; # polybar won't run this
+                click-left = "rofi_menu";
             };
             "module/bspwm" = {
                 type = "internal/bspwm";
@@ -78,11 +81,17 @@
                 label = "%title%";
                 label-maxlen = 60;
             };
+            "module/music" = {
+                # type = "internal/mpd";
+                # host = "127.0.0.1";
+                # port = "6600";
+                # label-offline = "mpd offline";
+                # label-song = "%artist% - %title%";
+            };
             "module/mic" = {
                 type = "custom/script";
                 interval = 1;
                 exec = "$HOME/dotfiles/home/bin/poll-mic-muted";
-                # exec = "echo test";
             };
             "module/audio" = {
                 type = "internal/pulseaudio";
@@ -133,6 +142,8 @@
             };
             "module/tray" = {
                 type = "internal/tray";
+                tray-spacing = 1;
+                tray-padding = 1;
             };
         };
     };

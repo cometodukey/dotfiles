@@ -36,6 +36,18 @@
         bat
     ];
 
+    home.file.".profile" = {
+        text = '''';
+    };
+
+    home.file.".bash_profile" = {
+        text = ''[[ -f ~/.profile ]] && . ~/.profile'';
+    };
+
+    home.file.".bashrc" = {
+        text = ''[[ -f ~/.profile ]] && . ~/.profile'';
+    };
+
     # home.file.".local/bin/poll-mic-muted" = {
     #     executable = true;
     #     source = "bin/poll-mic-muted";

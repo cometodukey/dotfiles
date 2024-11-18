@@ -1,7 +1,14 @@
 { config, inputs, lib, options, pkgs, system, ... }:
 
 let
+    alacritty = "${config.programs.alacritty.package}/bin/alacritty";
+    brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+    bspc = "${pkgs.bspwm}/bin/bspc";
+    firefox = "${config.programs.firefox.package}/bin/firefox";
+    pactl = "${pkgs.pulseaudio}/bin/pactl";
+    rofi = "${pkgs.rofi}/bin/rofi";
     spectacle = "${pkgs.spectacle}/bin/spectacle";
+    systemctl = "${pkgs.systemd}/bin/systemctl";
 in
 {
     services.sxhkd = {
@@ -9,10 +16,10 @@ in
 
         keybindings = {
             # Program bindings
-            "super + Return" = "${config.programs.alacritty.package}/bin/alacritty";
-            "super + b" = "${config.programs.firefox.package}/bin/firefox";
-            "super + e" = "$TERM -e $EDITOR";
-            "super + r" = "rofi -show run";
+            "super + Return" = "${alacritty}";
+            "super + b" = "${firefox}";
+            "super + e" = "${alacritty} -e $EDITOR";
+            "super + r" = "${rofi} -show run";
             "Print" = "${spectacle} -fcb"; # Fullscreen screenshot
             "shift + Print" = "${spectacle} -rcb"; # Selected region screenshot
             "shift + alt + Print" = "${spectacle} -acb"; # Selected window screenshot
@@ -23,32 +30,32 @@ in
             "XF86AudioMicMute" = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
 
             # Brightness
-            "XF86MonBrightness{Up,Down}" = "brightnessctl set 5%{+,-}";
+            "XF86MonBrightness{Up,Down}" = "${brightnessctl} set 5%{+,-}";
 
             # Reloading
-            "super + alt + {q,r}" = "bspc {quit,wm -r}";
+            "super + alt + {q,r}" = "${bspc} {quit,wm -r}";
             "super + alt + Escape" = "pkill -USR1 sxkhd";
-            "super + alt + p" = "systemctl --user restart polybar.service";
+            "super + alt + p" = "${systemctl} --user restart polybar.service";
             # quit/reload program launcher
 
             # close/kill
-            "super + {_,shift + }w" = "bspc node -{c,k}";
+            "super + {_,shift + }w" = "${bspc} node -{c,k}";
 
             # focus/swap
 
             # focus or send to the given desktop
-            "super + {_,shift + }{1-9,0}" = "bspc {desktop -f,node -d} '^{1-9,10}'";
+            "super + {_,shift + }{1-9,0}" = "${bspc} {desktop -f,node -d} '^{1-9,10}'";
 
             # focus the node in the given direction
-            "super + {_,shift + } {h,j,k,l}" = "bspc node -{f,s} {west,south,north,east}";
+            "super + {_,shift + } {h,j,k,l}" = "${bspc} node -{f,s} {west,south,north,east}";
 
            # move/resize
 
            # expand a window by moving one of its side outward
-           "super + alt + {h,j,k,l}" = "bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}";
+           "super + alt + {h,j,k,l}" = "${bspc} node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}";
 
           # contract a window by moving one of its side inward
-          "super + alt + shift + {h,j,k,l}" = "bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}";
+          "super + alt + shift + {h,j,k,l}" = "${bspc} node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}";
         };
     };
 }
