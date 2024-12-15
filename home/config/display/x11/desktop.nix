@@ -5,7 +5,7 @@
 {
     imports = [
         ./alacritty.nix
-        ./betterlockscreen.nix
+        # ./betterlockscreen.nix
         ./bspwm.nix
         ./firefox.nix
         ./polybar.nix

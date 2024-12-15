@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-    services.betterlockscreen.enable = true;
+    # services.betterlockscreen.enable = true;
 
     # TODO find a declarative way to do `betterlockscreen -u <wallpaper>`
 
@@ -9,9 +9,9 @@
         enable = true;
         configFile = {
             "betterlockscreen/betterlockscreenrc" = {
-                enable = true;
+                # enable = true;
                 text = ''
-                lock_timeout=1800 # 30 minutes
+                lock_timeout=0
                 locktext="Enter password"
                 '';
             };
