@@ -148,21 +148,28 @@
     # Jellyfin
 
     hardware.nvidia-container-toolkit.enable = true;
-    # virtualisation.docker.enable = true;
-    virtualisation.oci-containers = {
-        backend = "docker";
-        containers.jellyfin = {
-            autoStart = true;
-            image = "jellyfin/jellyfin:latest";
-            volumes = [
-                "/mnt/store/media:/media"
-                "/mnt/store/services/jellyfin/cache:/cache"
-                "/mnt/store/services/jellyfin/config:/config"
-            ];
-            cmd = [
-                "--net=host"
-                "--device=nvidia.com/gpu=all"
-            ];
+    virtualisation = {
+        docker.rootless = {
+            enable = true;
+            setSocketVariable = true;
+            daemon.settings = {
+                data-root = "/mnt/store/docker/data";
+            };
+        };
+        oci-containers = {
+            backend = "docker";
+            containers.jellyfin = {
+                autoStart = true;
+                image = "jellyfin/jellyfin:latest";
+                volumes = [
+                    "/mnt/store/media:/media"
+                    "/mnt/store/services/jellyfin:/jellyfin"
+                ];
+                cmd = [
+                    "-p 8097:8096"
+                    "--device=nvidia.com/gpu=all"
+                ];
+            };
         };
     };
 
