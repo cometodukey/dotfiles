@@ -77,7 +77,7 @@
     users.groups.store_access = {
         gid = 990;
     };
-    users.users.duke.extraGroups = [ "store_access" ];
+    users.users.duke.extraGroups = [ "store_access" "docker" ];
 
     containers.nas = {
         autoStart = true;
@@ -146,6 +146,25 @@
     networking.firewall.allowedUDPPorts = [ 137 138 ];
 
     # Jellyfin
+
+    hardware.nvidia-container-toolkit.enable = true;
+    # virtualisation.docker.enable = true;
+    virtualisation.oci-containers = {
+        backend = "docker";
+        containers.jellyfin = {
+            autoStart = true;
+            image = "jellyfin/jellyfin:latest";
+            volumes = [
+                "/mnt/store/media:/media"
+                "/mnt/store/services/jellyfin/cache:/cache"
+                "/mnt/store/services/jellyfin/config:/config"
+            ];
+            cmd = [
+                "--net=host"
+                "--device=nvidia.com/gpu=all"
+            ];
+        };
+    };
 
     containers.jellyfin = {
         autoStart = true;
