@@ -8,12 +8,14 @@
         ../common/default.nix
     ];
 
-    # Bootloader
-
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
-    # Display
+    services.tlp.settings = {
+        # DISK_DEVICES = ""; # Set to zpool/store drives
+        # DISK_APM_LEVEL_ON_AC = "1";
+        # DISK_SPINDOWN_TIMEOUT_ON_AC = "0 0"; # Set to 4 hours
+    };
 
     services.xserver = {
         # enable = true;
@@ -38,8 +40,10 @@
         };
         nvidia = {
             modesetting.enable = true;
-            # powerManagement.enable = true;
-            # powerManagement.finegrained = false;
+            powerManagement = {
+                enable = true;
+                finegrained = true;
+            };
             open = false;
             nvidiaSettings = true;
             package = config.boot.kernelPackages.nvidiaPackages.stable;
