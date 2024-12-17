@@ -1,4 +1,4 @@
-{}:
+{ config, ... }:
 
 let
     smb_tcp_ports = [ 139 ];

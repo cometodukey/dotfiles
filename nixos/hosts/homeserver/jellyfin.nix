@@ -1,4 +1,4 @@
-{}:
+{ config, ... }:
 
 let
     jellyfin_tcp_ports = [ 8096 8097 ];
