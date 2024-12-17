@@ -6,31 +6,16 @@
         ../common/services/logrotate.nix
         ../common/services/sshd.nix
         ../common/default.nix
+
+        ./homeserver/fileshare.nix
+        ./homeserver/jellyfin.nix
     ];
 
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
-    services.tlp.settings = {
-        # DISK_DEVICES = ""; # Set to zpool/store drives
-        # DISK_APM_LEVEL_ON_AC = "1";
-        # DISK_SPINDOWN_TIMEOUT_ON_AC = "0 0"; # Set to 4 hours
-    };
-
-    services.xserver = {
-        # enable = true;
-        videoDrivers = [ "nvidia" ];
-        # displayManager.lightdm.enable = true;
-        # desktopManager.xfce.enable = true;
-    };
-
-    # Hostname
-
     networking.hostName = "homeserver";
 
-    # Drivers, etc
-
-    nixpkgs.config.nvidia.acceptLicense = true;
     hardware = {
         cpu.intel.updateMicrocode = true;
         opengl = {
@@ -38,24 +23,20 @@
             driSupport = true;
             driSupport32Bit = true;
         };
-        nvidia = {
-            modesetting.enable = true;
-            powerManagement = {
-                enable = true;
-                # finegrained = true;
-            };
-            open = false;
-            nvidiaSettings = true;
-            package = config.boot.kernelPackages.nvidiaPackages.stable;
-        };
     };
 
-    # Virtualisation
-
-    virtualisation.libvirtd.enable = true;
-    programs.virt-manager.enable = true;
-
-    # ZFS
+    services.xserver.videoDrivers = [ "nvidia" ];
+    nixpkgs.config.nvidia.acceptLicense = true;
+    hardware.nvidia = {
+        modesetting.enable = true;
+        powerManagement = {
+            enable = true;
+            # finegrained = true;
+        };
+        open = false;
+        nvidiaSettings = true;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
 
     environment.systemPackages = with pkgs; [ cryptsetup ];
     networking.hostId = "ceb9d53a";
@@ -75,82 +56,14 @@
         trim.enable = true;
     };
 
-    # SMB
-    # TODO revise security measures
-
-    users.groups.store_access = {
-        gid = 990;
-    };
-    users.users.duke.extraGroups = [ "store_access" "docker" ];
-
-    containers.nas = {
-        autoStart = true;
-        restartIfChanged = true;
-        privateNetwork = false;
-
-        bindMounts = {
-            "media" = {
-                hostPath = "/mnt/store/media";
-                mountPoint = "/smb/media";
-                isReadOnly = false;
-            };
-            "home" = {
-                hostPath = "/mnt/store/home";
-                mountPoint = "/smb/home";
-                isReadOnly = false;
-            };
-        };
-
-        config = { ... }: {
-            users.groups.store_access = {
-                gid = 990;
-            };
-
-            users.users.duke = {
-                isNormalUser = true;
-                uid = 1000;
-                description = "duke";
-                group = "store_access";
-            };
-
-             services.samba = {
-                enable = true;
-                openFirewall = true;
-                shares = {
-                    "media" = {
-                        path = "/smb/media";
-                        "read only" = false;
-                        "writable" = "yes";
-                        "write list" = [ "duke" ];
-                        "force user" = "duke";
-                        "browseable" = "yes";
-                        comment = "Multi-media share";
-                    };
-                    "home" = {
-                        path = "/smb/home";
-                        "read only" = false;
-                        "writable" = "yes";
-                        "write list" = [ "duke" ];
-                        "force user" = "duke";
-                        "browseable" = "yes";
-                        "guest ok" = "no";
-                        comment = "Home directory";
-                    };
-                };
-            };
-            networking.nftables.enable = true;
-            networking.firewall = {
-                enable = true;
-            };
-            system.stateVersion = "24.05";
-        };
+    # TODO
+    services.tlp.settings = {
+        # DISK_DEVICES = ""; # Set to zpool/store drives
+        # DISK_APM_LEVEL_ON_AC = "128";
+        # DISK_SPINDOWN_TIMEOUT_ON_AC = "0 0"; # Set to 4 hours
     };
 
-    networking.firewall.allowedTCPPorts = [ 139 445 8096 ];
-    networking.firewall.allowedUDPPorts = [ 137 138 ];
-
-    # Jellyfin
-
+    users.users.duke.extraGroups = [ "docker" ];
     hardware.nvidia-container-toolkit.enable = true;
     virtualisation = {
         docker.rootless = {
@@ -160,60 +73,7 @@
                 data-root = "/mnt/store/docker/data";
             };
         };
-        oci-containers = {
-            backend = "docker";
-            containers.jellyfin = {
-                autoStart = true;
-                image = "jellyfin/jellyfin:latest";
-                volumes = [
-                    "/mnt/store/media:/media"
-                    "/mnt/store/services/jellyfin:/jellyfin"
-                ];
-                cmd = [
-                    "-p 8097:8096"
-                    "--device=nvidia.com/gpu=all"
-                ];
-            };
-        };
     };
-
-    containers.jellyfin = {
-        autoStart = true;
-        restartIfChanged = true;
-        privateNetwork = false;
-
-        bindMounts = {
-            "media" = {
-                hostPath = "/mnt/store/media";
-                mountPoint = "/mnt/media";
-                isReadOnly = true;
-            };
-            "dri" = {
-                hostPath = "/dev/dri";
-                mountPoint = "/dev/dri";
-                isReadOnly = false;
-            };
-        };
-
-        config = { pkgs, ... }: {
-            environment.systemPackages = with pkgs; [
-                jellyfin
-                jellyfin-web
-                jellyfin-ffmpeg
-                pciutils
-            ];
-            services.jellyfin = {
-                enable = true;
-                openFirewall = true;
-            };
-            hardware.opengl = {
-                enable = true;
-            };
-            system.stateVersion = "24.05";
-        };
-    };
-
-    #
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
@@ -223,4 +83,3 @@
     # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
     system.stateVersion = "24.05";# Did you read the comment?
 }
-
