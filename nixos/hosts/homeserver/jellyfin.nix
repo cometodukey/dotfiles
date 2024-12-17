@@ -12,7 +12,7 @@ in
         after = [ "network.target" ];
         serviceConfig = {
             Type = "forking";
-            ExecStart = "${docker} run --name jellyfin -v /mnt/store/services/jellyfin/:/jellyfin --runtime nvidia --device=nvidia.com/gpu=all -p 8097:8096 --datadir=/jellyfin/data --configdir=/jellyfin/config --cachedir=/jellyfin/cache --webdir=/jellyfin/web --logdir=/jellyfin/log";
+            ExecStart = "${docker} run --name jellyfin -v /mnt/store/services/jellyfin/:/jellyfin --runtime nvidia --device=nvidia.com/gpu=all -p 8097:8096 jellyfin/jellyfin:latest --datadir=/jellyfin/data --configdir=/jellyfin/config --cachedir=/jellyfin/cache --webdir=/jellyfin/web --logdir=/jellyfin/log";
             ExecStop = "${docker} stop jellyfin";
         };
     };
