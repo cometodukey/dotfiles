@@ -1,32 +1,48 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
-    jellyfin_tcp_ports = [ 8096 8097 ];
+    docker = "${pkgs.docker}/bin/docker";
 in
 {
-    networking.firewall.allowedTCPPorts = [] ++ jellyfin_tcp_ports;
+    networking.firewall.allowedTCPPorts = [ 8096 8097 ];
 
-    virtualisation = {
-        oci-containers = {
-            backend = "docker";
-            containers.jellyfin = {
-                autoStart = true;
-                image = "jellyfin/jellyfin:latest";
-                volumes = [
-                    "/mnt/store/media:/media"
-                    "/mnt/store/services/jellyfin:/jellyfin"
-                ];
-                cmd = [
-                    "-p localhost:8097:localhost:8096"
-
-                    # The NVIDIA container runtime is installed elsewhere
-                    "--device=nvidia.com/gpu=all"
-                ];
-            };
+    systemd.services.jellyfin = {
+        description = "Jellyfin server";
+        wantedBy = [ "multi-user.target" ];
+        after = [ "network.target" ];
+        serviceConfig = {
+            Type = "forking";
+            ExecStart = "${docker} run --name jellyfin -v /mnt/store/services/jellyfin/:/jellyfin --runtime nvidia --device=nvidia.com/gpu=all -p 8097:8096 --datadir=/jellyfin/data --configdir=/jellyfin/config --cachedir=/jellyfin/cache --webdir=/jellyfin/web --logdir=/jellyfin/log";
+            ExecStop = "${docker} stop jellyfin";
         };
     };
 
-    containers.jellyfin = {
+    # virtualisation = {
+    #     oci-containers = {
+    #         backend = "docker";
+    #         containers = {
+    #             jellyfin = {
+    #                 autoStart = true;
+    #                 image = "jellyfin/jellyfin:latest";
+    #                 volumes = [
+    #                     # "/mnt/store/media:/media"
+    #                     # "/mnt/store/services/jellyfin:/jellyfin"
+    #                 ];
+    #                 ports = [ "8097:8096" ];
+    #                 cmd = [
+    #                     "--device=nvidia.com/gpu=all"
+    #                     "--datadir /jellyfin/data"
+    #                     "--configdir /jellyfin/config"
+    #                     "--cachedir /jellyfin/cache"
+    #                     "--webdir /jellyfin/web"
+    #                     "--logdir /jellyfin/log"
+    #                 ];
+    #             };
+    #         };
+    #     };
+    # };
+
+    containers.jellyfinbak = {
         autoStart = true;
         restartIfChanged = true;
         privateNetwork = false;
