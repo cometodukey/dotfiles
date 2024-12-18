@@ -4,7 +4,7 @@ let
     docker = "${pkgs.docker}/bin/docker";
 in
 {
-    networking.firewall.allowedTCPPorts = [ 8096 8097 ];
+    networking.firewall.allowedTCPPorts = [ 8096 ];
 
     systemd.services.jellyfin = {
         description = "Jellyfin server";
