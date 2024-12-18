@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-    smb_tcp_ports = [ 139 ];
+    smb_tcp_ports = [ 139 445 ];
     smb_udp_ports = [ 137 138 ];
 in
 {
