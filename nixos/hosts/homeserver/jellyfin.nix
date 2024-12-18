@@ -22,18 +22,14 @@ in
                         "${jellyfin_dir_host}:${jellyfin_dir_guest}"
                     ];
                     ports = [ "${toString jellyfin_port}:${toString jellyfin_port}" ];
-                    entrypoint = "/bin/bash";
                     extraOptions = [ "--device=nvidia.com/gpu=all" ];
-                    cmd = [
-                        "-c '"
-                        "/jellyfin/jellyfin"
-                        "--datadir ${jellyfin_dir_guest}/data"
-                        "--configdir ${jellyfin_dir_guest}/config"
-                        "--cachedir ${jellyfin_dir_guest}/cache"
-                        "--webdir ${jellyfin_dir_guest}/web"
-                        "--logdir ${jellyfin_dir_guest}/log"
-                        "'"
-                    ];
+                    environment = {
+                        JELLYFIN_DATA_DIR = "${jellyfin_dir_guest}/data";
+                        JELLYFIN_CONFIG_DIR = "${jellyfin_dir_guest}/config";
+                        JELLYFIN_CACHE_DIR = "${jellyfin_dir_guest}/cache";
+                        JELLYFIN_WEB_DIR = "${jellyfin_dir_guest}/web";
+                        JELLYFIN_LOG_DIR = "${jellyfin_dir_guest}/log";
+                    };
                 };
             };
         };
