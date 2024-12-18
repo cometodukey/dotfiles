@@ -65,15 +65,15 @@
 
     users.users.duke.extraGroups = [ "docker" ];
     hardware.nvidia-container-toolkit.enable = true;
-    virtualisation = {
-        docker.rootless = {
-            enable = true;
-            setSocketVariable = true;
-            daemon.settings = {
-                data-root = "/mnt/store/docker/data";
-            };
-        };
-    };
+    # virtualisation = {
+    #     docker.rootless = {
+    #         enable = true;
+    #         setSocketVariable = true;
+    #         daemon.settings = {
+    #             data-root = "/mnt/store/docker/data";
+    #         };
+    #     };
+    # };
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
