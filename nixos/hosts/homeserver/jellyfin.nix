@@ -2,7 +2,7 @@
 
 let
     jellyfin_port = 8096;
-    media_dir_guest = "/mnt/store/media";
+    media_dir_host = "/mnt/store/media";
     media_dir_guest = "/media";
     jellyfin_dir_host = "/mnt/store/services/jellyfin";
     jellyfin_dir_guest = "/var/jellyfin";
