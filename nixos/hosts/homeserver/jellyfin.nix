@@ -27,7 +27,6 @@ in
                         JELLYFIN_DATA_DIR = "${jellyfin_dir_guest}/data";
                         JELLYFIN_CONFIG_DIR = "${jellyfin_dir_guest}/config";
                         JELLYFIN_CACHE_DIR = "${jellyfin_dir_guest}/cache";
-                        JELLYFIN_WEB_DIR = "${jellyfin_dir_guest}/web";
                         JELLYFIN_LOG_DIR = "${jellyfin_dir_guest}/log";
                     };
                 };
