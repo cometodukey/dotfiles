@@ -5,7 +5,7 @@ let
     media_dir_guest = "/mnt/store/media";
     media_dir_guest = "/media";
     jellyfin_dir_host = "/mnt/store/services/jellyfin";
-    jellyfin_dir_guest = "/jellyfin";
+    jellyfin_dir_guest = "/var/jellyfin";
 in
 {
     networking.firewall.allowedTCPPorts = [ jellyfin_port ];
